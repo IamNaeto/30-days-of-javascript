@@ -84,3 +84,93 @@ Use filter to filter out countries containing six letters and more in the countr
 */
 const countriesWithMoreThanSixChar = countries.filter((country) => country.length >= 6)
 console.log(countriesWithMoreThanSixChar)
+
+/*
+Use filter to filter out country start with 'E';
+*/
+const countryStartWithE = countries.filter((country) => country.startsWith("E"))
+console.log(countryStartWithE)
+
+/*
+Use filter to filter out only prices with values.
+*/
+const pricesWithValues = products.filter((priceInit) => typeof priceInit.price === "number" && priceInit.price).map((priceInit) => priceInit.price)
+console.log(pricesWithValues)
+
+/*
+Declare a function called getStringLists which takes an array as a parameter and then returns an array only with string items.
+*/
+function getStringLists (arr) {
+  const newArr = arr.filter((array) => typeof array === "string")
+  return newArr
+}
+console.log(getStringLists (["ada", "obi", "ijeoma", 6, 8, 5, "chioma"]))
+
+/*
+Use reduce to sum all the numbers in the numbers array.
+*/
+const sumAll = numbers.reduce((acc, cur) => acc + cur,0)
+console.log(sumAll)
+
+/*
+Use reduce to concatenate all the countries and to produce this sentence: Estonia, Finland, Sweden, Denmark, Norway, and IceLand are north European countries
+*/
+const concatenatedCountries = countries.reduce((acc, curr, index) => {
+  if (index === 0) {
+    return curr;
+  } else if (index === countries.length - 1) {
+    return `${acc}, and ${curr}`;
+  } else {
+    return `${acc}, ${curr}`;
+  }
+});
+
+console.log(`${concatenatedCountries} are north European countries`);
+
+/*
+Explain the difference between some and every
+*/
+// some: Check if some of the elements are similar in one aspect. It returns boolean
+// every: Check if all the elements are similar in one aspect. It returns boolean
+
+/*
+Use some to check if some names' length greater than seven in names array
+*/
+const namesLen = names.some((name) => name.length > 7) 
+console.log(namesLen)
+
+/*
+Use every to check if all the countries contain the word land
+*/
+const countriesContain = countries.every((country) => country.includes("land"))
+console.log(countriesContain)
+
+/*
+Explain the difference between find and findIndex.
+*/
+// find: Return the first element which satisfies the condition
+// findIndex: Return the position of the first element which satisfies the condition
+
+/*
+Use find to find the first country containing only six letters in the countries array
+*/
+const firstCountry = countries.find((country) => country.length === 6)
+console.log(firstCountry)
+
+/*
+Use findIndex to find the position of the first country containing only six letters in the countries array
+*/
+const countryFindIndex = countries.findIndex((country) => country.length === 6)
+console.log(countryFindIndex)
+
+/*
+Use findIndex to find the position of Norway if it doesn't exist in the array you will get -1.
+*/
+const NorwayPos = countries.findIndex((country) => country === "Norway")
+console.log(NorwayPos)
+
+/*
+Use findIndex to find the position of Russia if it doesn't exist in the array you will get -1.
+*/
+const russiaPos = countries.findIndex((country) => country === "Russia")
+console.log(russiaPos)
