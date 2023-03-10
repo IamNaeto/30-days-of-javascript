@@ -174,3 +174,8 @@ Use findIndex to find the position of Russia if it doesn't exist in the array yo
 */
 const russiaPos = countries.findIndex((country) => country === "Russia")
 console.log(russiaPos)
+
+
+/***************
+Exercises: Level 2
+****************/
