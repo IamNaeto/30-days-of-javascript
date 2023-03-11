@@ -179,3 +179,329 @@ console.log(russiaPos)
 /***************
 Exercises: Level 2
 ****************/
+// Find the total price of products by chaining two or more array iterators(eg. arr.map(callback).filter(callback).reduce(callback))
+const totalPrice = products.map((product) => Number(product.price)).filter((prices) => !isNaN(prices)).reduce((total, price) => total + price, 0)
+console.log(totalPrice)
+
+// Find the sum of price of products using only reduce reduce(callback))
+const sumOfPrices = products.reduce((total, product) => {
+  const price = Number(product.price)
+  if (!isNaN(price)){
+    return total + price
+  }
+  return total
+}, 0)
+console.log(sumOfPrices)
+
+/*
+Declare a function called categorizeCountries which returns an array of countries which have some common pattern(you find the countries array in this repository as countries.js(eg 'land', 'ia', 'island','stan')).
+*/
+function categorizeCountries (countries) {
+  const patterns = ['land', 'ia', 'island','stan']
+  const result = []
+
+  for(let country of countries){
+    for(let pattern of patterns){
+      if(country.toLowerCase().includes(pattern)){
+        result.push(country)
+      }
+    }
+  }
+  return result
+}
+const countriesFull = [
+  'Afghanistan',
+  'Albania',
+  'Algeria',
+  'Andorra',
+  'Angola',
+  'Antigua and Barbuda',
+  'Argentina',
+  'Armenia',
+  'Australia',
+  'Austria',
+  'Azerbaijan',
+  'Bahamas',
+  'Bahrain',
+  'Bangladesh',
+  'Barbados',
+  'Belarus',
+  'Belgium',
+  'Belize',
+  'Benin',
+  'Bhutan',
+  'Bolivia',
+  'Bosnia and Herzegovina',
+  'Botswana',
+  'Brazil',
+  'Brunei',
+  'Bulgaria',
+  'Burkina Faso',
+  'Burundi',
+  'Cambodia',
+  'Cameroon',
+  'Canada',
+  'Cape Verde',
+  'Central African Republic',
+  'Chad',
+  'Chile',
+  'China',
+  'Colombi',
+  'Comoros',
+  'Congo (Brazzaville)',
+  'Congo',
+  'Costa Rica',
+  "Cote d'Ivoire",
+  'Croatia',
+  'Cuba',
+  'Cyprus',
+  'Czech Republic',
+  'Denmark',
+  'Djibouti',
+  'Dominica',
+  'Dominican Republic',
+  'East Timor (Timor Timur)',
+  'Ecuador',
+  'Egypt',
+  'El Salvador',
+  'Equatorial Guinea',
+  'Eritrea',
+  'Estonia',
+  'Ethiopia',
+  'Fiji',
+  'Finland',
+  'France',
+  'Gabon',
+  'Gambia, The',
+  'Georgia',
+  'Germany',
+  'Ghana',
+  'Greece',
+  'Grenada',
+  'Guatemala',
+  'Guinea',
+  'Guinea-Bissau',
+  'Guyana',
+  'Haiti',
+  'Honduras',
+  'Hungary',
+  'Iceland',
+  'India',
+  'Indonesia',
+  'Iran',
+  'Iraq',
+  'Ireland',
+  'Israel',
+  'Italy',
+  'Jamaica',
+  'Japan',
+  'Jordan',
+  'Kazakhstan',
+  'Kenya',
+  'Kiribati',
+  'Korea, North',
+  'Korea, South',
+  'Kuwait',
+  'Kyrgyzstan',
+  'Laos',
+  'Latvia',
+  'Lebanon',
+  'Lesotho',
+  'Liberia',
+  'Libya',
+  'Liechtenstein',
+  'Lithuania',
+  'Luxembourg',
+  'Macedonia',
+  'Madagascar',
+  'Malawi',
+  'Malaysia',
+  'Maldives',
+  'Mali',
+  'Malta',
+  'Marshall Islands',
+  'Mauritania',
+  'Mauritius',
+  'Mexico',
+  'Micronesia',
+  'Moldova',
+  'Monaco',
+  'Mongolia',
+  'Morocco',
+  'Mozambique',
+  'Myanmar',
+  'Namibia',
+  'Nauru',
+  'Nepal',
+  'Netherlands',
+  'New Zealand',
+  'Nicaragua',
+  'Niger',
+  'Nigeria',
+  'Norway',
+  'Oman',
+  'Pakistan',
+  'Palau',
+  'Panama',
+  'Papua New Guinea',
+  'Paraguay',
+  'Peru',
+  'Philippines',
+  'Poland',
+  'Portugal',
+  'Qatar',
+  'Romania',
+  'Russia',
+  'Rwanda',
+  'Saint Kitts and Nevis',
+  'Saint Lucia',
+  'Saint Vincent',
+  'Samoa',
+  'San Marino',
+  'Sao Tome and Principe',
+  'Saudi Arabia',
+  'Senegal',
+  'Serbia and Montenegro',
+  'Seychelles',
+  'Sierra Leone',
+  'Singapore',
+  'Slovakia',
+  'Slovenia',
+  'Solomon Islands',
+  'Somalia',
+  'South Africa',
+  'Spain',
+  'Sri Lanka',
+  'Sudan',
+  'Suriname',
+  'Swaziland',
+  'Sweden',
+  'Switzerland',
+  'Syria',
+  'Taiwan',
+  'Tajikistan',
+  'Tanzania',
+  'Thailand',
+  'Togo',
+  'Tonga',
+  'Trinidad and Tobago',
+  'Tunisia',
+  'Turkey',
+  'Turkmenistan',
+  'Tuvalu',
+  'Uganda',
+  'Ukraine',
+  'United Arab Emirates',
+  'United Kingdom',
+  'United States',
+  'Uruguay',
+  'Uzbekistan',
+  'Vanuatu',
+  'Vatican City',
+  'Venezuela',
+  'Vietnam',
+  'Yemen',
+  'Zambia',
+  'Zimbabwe'
+]
+console.log(categorizeCountries(countriesFull))
+
+/*
+Create a function which return an array of objects, which is the letter and the number of times the letter use to start with a name of a country.
+*/
+function countCountriesByFirstLetter(countries) {
+  let counts = {};
+  for (let country of countries) {
+    let firstLetter = country[0].toUpperCase();
+    if (counts[firstLetter]) {
+      counts[firstLetter]++;
+    } else {
+      counts[firstLetter] = 1;
+    }
+  }
+  return Object.entries(counts).map(([letter, count]) => ({letter, count}));
+}
+let countriesArr = ['Australia', 'Brazil', 'Canada', 'Denmark', 'Egypt', 'France', 'Germany', 'Hungary', 'India', 'Japan', 'Korea', 'Liberia', 'Mexico', 'Nigeria', 'Oman', 'Poland', 'Qatar', 'Russia', 'Spain', 'Turkey', 'Ukraine', 'Vietnam', 'Wales', 'Yemen', 'Zambia'];
+let counts = countCountriesByFirstLetter(countriesArr);
+console.log(counts);
+
+/*
+Declare a getFirstTenCountries function and return an array of ten countries. Use different functional programming to work on the countries.js array
+*/
+function getFirstTenCountries () {
+  return countriesFull.slice(0, 10)
+}
+console.log(getFirstTenCountries())
+
+// Using filter to get the first 10 countries
+const getFirstTenCountries1 = () => {
+  return countriesFull.filter((country, index) => index < 10);
+};
+console.log(getFirstTenCountries1())
+
+// Using map and slice to get the first 10 country names
+const getFirstTenCountries2 = () => {
+  return countriesFull.map((country) => country).slice(0, 10);
+};
+console.log(getFirstTenCountries2())
+
+// Using reduce to get the first 10 countries
+const getFirstTenCountries3 = () => {
+  return countriesFull.reduce((result, country, index) => {
+    if (index < 10) {
+      result.push(country);
+    }
+    return result;
+  }, []);
+};
+console.log(getFirstTenCountries3())
+
+/*
+Declare a getLastTenCountries function which which returns the last ten countries in the countries array.
+*/
+function getLastTenCountries () {
+  return countriesFull.slice(-10)
+}
+console.log(getLastTenCountries())
+
+// using map, slice and reverse
+function getLastTenCountries1 () {
+  return countriesFull.map((country) => country).reverse().slice(0, 10).reverse()
+  // map make a shallow copy of the array
+  // first reverse, reverse the array to get the countries in descending order
+  // slice get the first 10 countries in the array
+  // last reverse reverse the array again to restore the original order
+}
+console.log(getLastTenCountries1())
+
+
+/*
+Find out which letter is used many times as initial for a country name from the countries array (eg. Finland, Fiji, France etc)
+*/
+const countCountryInitials = () => {
+  const initials = countriesFull.map(country => country[0].toUpperCase()); // get the first letter of each country name and convert it to uppercase
+  const frequencies = {};
+  for (const initial of initials) { // loop through the initials array and count the frequency of each letter
+    if (frequencies[initial]) {
+      frequencies[initial]++;
+    } else {
+      frequencies[initial] = 1;
+    }
+  }
+  let mostFrequentInitial = null;
+  let highestFrequency = 0;
+  for (const initial in frequencies) { // loop through the frequencies object and find the most frequent initial
+    if (frequencies[initial] > highestFrequency) {
+      mostFrequentInitial = initial;
+      highestFrequency = frequencies[initial];
+    }
+  }
+  return mostFrequentInitial;
+};
+
+console.log(countCountryInitials()); 
+
+
+/****************
+Exercises: Level 3
+****************/
