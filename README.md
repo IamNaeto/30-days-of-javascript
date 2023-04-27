@@ -1,4 +1,5 @@
-# 30-Days-Of-JavaScript
+![image](https://user-images.githubusercontent.com/105589308/234927107-ac3638ce-d736-432d-8a45-33bd6f35782d.png)
+# 30-Days-Of-JavaScript-Journey
 - This repo contains my solved excercise on my 30 days journey of learning JavaScript.
 
 ## Author: Charles Obimnaeto Egesionu ##
