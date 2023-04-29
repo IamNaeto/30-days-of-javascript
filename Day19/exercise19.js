@@ -68,3 +68,37 @@ Exercises: Level 3
 /*
 Create a personAccount out function. It has firstname, lastname, incomes, expenses inner variables. It has totalIncome, totalExpense, accountInfo,addIncome, addExpense and accountBalance inner functions. Incomes is a set of incomes and its description and expenses is also a set of expenses and its description.
 */
+function personAccount(firstname, lastname) {
+    let incomes = {};
+    let expenses = {};
+    let totalIncome = 0;
+    let totalExpense = 0;
+  
+    function accountInfo() {
+      console.log(`${firstname} ${lastname}'s account balance:`);
+      console.log(`Income: $${totalIncome}`);
+      console.log(`Expense: $${totalExpense}`);
+      console.log(`Balance: $${accountBalance()}`);
+    }
+  
+    function addIncome(amount, description) {
+      incomes[description] = amount;
+      totalIncome += amount;
+    }
+  
+    function addExpense(amount, description) {
+      expenses[description] = amount;
+      totalExpense += amount;
+    }
+  
+    function accountBalance() {
+      return totalIncome - totalExpense;
+    }
+  
+    return {
+      accountInfo,
+      addIncome,
+      addExpense,
+      accountBalance
+    };
+  }  
