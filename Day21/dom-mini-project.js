@@ -15,6 +15,7 @@ Ongoing challenge has background yellow
 Coming challenges have background red
 */
 
+// Get the dom of the div and center it
 const wrapper = document.querySelectorAll('.wrapper')
 wrapper.forEach((wrap) =>{
     wrap.style.display = 'flex'
@@ -23,6 +24,7 @@ wrapper.forEach((wrap) =>{
     wrap.style.justifyContent = "center"
 })
 
+// get the dom of the li in the ul inside the div and style it
 document.querySelector('ul').style.listStyleType = 'none'
 const list = document.querySelectorAll('li')
 list.forEach((eachList, i) => {
@@ -49,59 +51,22 @@ document.querySelector('body').style.boxSizing = 'border-box'
 
 setInterval(() => {
 const currentDate = new Date()
-let month = currentDate.getMonth()
-let months = ''
-switch (month){
-    case 1:
-        months = 'January';
-        break; 
-    case 2:
-        months = 'Febuary';
-        break; 
-    case 3:
-        months = 'March';
-        break; 
-    case 4:
-        months = 'April';
-        break; 
-    case 5:
-        months = 'May';
-        break; 
-    case 6:
-        months = 'June';
-        break; 
-    case 7:
-        months = 'July';
-        break; 
-    case 8:
-        months = 'August';
-        break; 
-    case 9:
-        months = 'September';
-        break; 
-    case 10:
-        months = 'October';
-        break; 
-    case 11:
-        months = 'November';
-        break; 
-    case 12:
-        months = 'December';
-        break; 
-}
-let day = currentDate.getDay()
+let month = currentDate.toLocaleString('default', { month: 'long' })
+
+let day = String(currentDate.getDay()).padStart(2,0)
 let year = currentDate.getFullYear()
-let hour = currentDate.getHours()
+let hour = currentDate.getHours();
+let amPm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12; // convert to 12-hour format
+    hour = String(hour).padStart(2, 0);
 
-let minutes = currentDate.getMinutes()
-let sec = currentDate.getSeconds()
+let minutes = String(currentDate.getMinutes()).padStart(2,0)
+let sec = String(currentDate.getSeconds()).padStart(2, 0)
 
-let compliedDate = `${months} ${day}, ${year} ${hour}:${minutes}:${sec}`
+let compliedDate = `${month} ${day}, ${year} ${hour}:${minutes}:${sec} ${amPm}`
 
 const ul = document.querySelector('h3')
-ul.innerHTML = compliedDate.toLocaleString('en-US', {
-    hour12: false,
-     })
+ul.innerHTML = compliedDate
 
  const colorCode = Math.floor(Math.random() * 16777215).toString(16);
 
