@@ -38,7 +38,7 @@ body.addEventListener('keypress', value =>{
     h2.innerHTML = characters.join(' ');
 
     h1.textContent = value.keyCode
-    h1.style.fontSize = '50px'
+    h1.style.fontSize = '80px'
     h1.style.color = '#5bbc7a'
     h1.style.textShadow = '2px 2px 4px #e0e0e0'
     h1.style.padding = '30px'
