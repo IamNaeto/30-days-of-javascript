@@ -16,7 +16,7 @@ h1.style.fontSize = '30px'
 h1.style.textShadow = '1px 1px 1px #0000ff'
 h1.style.marginBottom = '50px'
 
-const input = document.querySelector('#mass')
+const input = document.querySelector('input')
 input.style.padding = '10px'
 input.style.outline = 'none'
 input.style.border = 'none'
@@ -45,15 +45,13 @@ main.style.display = 'flex'
 main.style.alignItems = 'center'
 main.style.justifyContent = 'center'
 main.style.backgroundColor = 'rgba(255,255,255,0.1)'
-main.style.width = '80%'
-// main.style.height ='70vh'
+main.style.width = '90%'
 
 const flexContainer = document.querySelector('.flex-container')
 flexContainer.style.display = 'flex'
 flexContainer.style.alignItems = 'center'
 flexContainer.style.justifyContent = 'center'
-flexContainer.style.padding = '50px 0'
-// flexContainer.style.width = '100%'
+flexContainer.style.padding = '50px 0px 50px 20px'
  
 const flexItem = document.querySelector('.flex-item')
 flexItem.style.width = '70%'
@@ -66,48 +64,6 @@ planetImg.style.width = '100%'
 const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Moon']
 const planetGravity = [3.59, 8.87, 9.81, 3.77, 25.95, 11.08, 10.67, 14.07, 0.42, 1.62]
 
-let solarSystem = {
-    mercury : {
-        gravity : 3.59,
-        // 'image' : //source,
-    },
-    venus : {
-        gravity : 8.87,
-        // 'image' : //source,
-    },
-    earth : {
-        gravity : 9.81,
-        // 'image' : //source,
-    },
-    mars : {
-        gravity : 3.77,
-        // 'image' : //source,
-    },
-    jupiter : {
-        gravity : 25.95,
-        // 'image' : //source,
-    },
-    saturn : {
-        gravity : 11.08,
-        // 'image' : //source,
-    },
-    uranus : {
-        gravity : 10.67,
-        // 'image' : //source,
-    },
-    neptune : {
-        gravity : 14.07,
-        // 'image' : //source,
-    },
-    pluto : {
-        gravity : 0.42,
-        // 'image' : //source,
-    },
-    moon : {
-        gravity : 1.62,
-        // 'image' : //source,
-    }
-}
 
 function createPlanetsOption(){
     for(let i=0; i<planets.length; i++){
@@ -128,15 +84,21 @@ function createDescriptionDiv(){
     descriptionDiv.style.alignItems = 'center'
     descriptionDiv.style.justifyContent = 'center'
     descriptionDiv.style.color = '#ffffff'
-    descriptionDiv.style.fontSize = '50px'
+    descriptionDiv.style.fontSize = '30px'
     descriptionDiv.style.width = '100%'
+    descriptionDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
+    descriptionDiv.style.padding = '0px 20px 5px 20px'
+    descriptionDiv.style.margin = '0 20px'
 
     return descriptionDiv
 }
 
 let descriptionParagraph = document.createElement('p')
 descriptionParagraph.innerHTML = 'The Weight of the object on: ';
-descriptionParagraph.style.fontSize = '30px'
+descriptionParagraph.id = descriptionParagraph
+descriptionParagraph.style.fontSize = '20px'
+descriptionParagraph.textAlign = 'center'
+descriptionParagraph.margin = '0px'
 
 let planetSpan = document.createElement('span')
 planetSpan.id = 'planetSpan'
@@ -149,9 +111,8 @@ resultDiv.style.justifyContent = 'center'
 resultDiv.style.background = 'red'
 resultDiv.style.borderRadius = '100px'
 resultDiv.style.width = '200px'
-resultDiv.style.height = '200px'
+resultDiv.style.height = '100px'
 resultDiv.innerHTML = 'Ballablu, blu, bulaba'
-resultDiv.fontSize = '60px'
 resultDiv.textAlign = 'center'
 
 function calculateWeight(){
@@ -162,96 +123,88 @@ function calculateWeight(){
 
         let mass =  input.value
         let planetType = select.value
-        let weight 
-        planetSpan.innerHTML = `${select.value.toUpperCase()}`
+        let weight;
+        planetSpan.innerText = `${select.value.toUpperCase()}`
         let image = document.querySelector('.image')
-        let description = document.querySelector('.description')
         if(planetType === 'none' || mass === ''){
             image.style.display = 'none'
-            description.style.display = 'none'
             resultDiv.style.display = 'none'
-            resultDiv.style.display = 'flex'
-            resultDiv.style.justifyContent = 'center'
-            resultDiv.style.alignItems = 'center'
-            resultDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
-            resultDiv.style.borderRadius = '20px'
-            resultDiv.style.width = '75%';
-            resultDiv.style.height = '200px'
-
             if(mass === ''){
-                resultDiv.innerHTML = 'Mass Is Required'
+                descriptionParagraph.innerText = 'Mass Is Required'
             }else{
-                resultDiv.innerHTML = 'You did not select a planet'
+                descriptionParagraph.innerText = 'You did not select a planet'
             }
-        }else{
+        }
+        else{
         image.style.display = 'block'
-        description.style.display = 'block'
-
         resultDiv.style.display = 'flex'
         resultDiv.style.justifyContent = 'center'
         resultDiv.style.alignItems = 'center'
         resultDiv.style.backgroundColor = 'rgba(255,255,255,0.1)'
         resultDiv.style.borderRadius = '100px'
-        resultDiv.style.width = '200px';
-        resultDiv.style.height = '200px';
-        }
+        resultDiv.style.width = '150px';
+        resultDiv.style.height = '150px';
+        resultDiv.style.fontWeight = 'bolder'
+        descriptionParagraph.innerHTML = `The Weight of the object on: <b>${select.value.toUpperCase()}</b>`
+        planetImg.style.width = '90%'
 
+        
          switch(true){
-            case (planetType === 'mercury') : 
-             weight = mass * solarSystem.mercury.gravity;
+            case (planetType === 'Mercury') : 
+             weight = mass * planetGravity[0]
             resultDiv.innerText = `${weight.toFixed(1)}N`;
-            planetImg.src = 'img/mercury.png'
+            planetImg.src = './img/mercury.png'
             break;
             
-            case (planetType === 'venus') : 
+            case (planetType === 'Venus') : 
              weight = mass * planetGravity[1];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/venus.png'
             break;
             
-            case (planetType === 'earth') : 
+            case (planetType === 'Earth') : 
              weight = mass * planetGravity[2];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/earth.png'
             break;
 
-            case (planetType === 'mars') : 
+            case (planetType === 'Mars') : 
              weight = mass * planetGravity[3];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/mars.png'
             break;
 
-            case (planetType === 'jupiter') : 
+            case (planetType === 'Jupiter') : 
              weight = mass * planetGravity[4];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/jupiter.png'
             break;
 
-            case (planetType === 'saturn') : 
+            case (planetType === 'Saturn') : 
              weight = mass * planetGravity[5];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/saturn.png'
             break;
 
-            case (planetType === 'uranus') : 
+            case (planetType === 'Uranus') : 
              weight = mass * planetGravity[6];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/uranus.png'
             break;
 
-            case (planetType === 'neptune') : 
+            case (planetType === 'Neptune') : 
              weight = mass * planetGravity[7];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/neptune.png'
             break;
 
-            case (planetType === 'pluto') : 
+            case (planetType === 'Pluto') : 
              weight = mass * planetGravity[8];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/pluto.png'
             break;
 
-            case (planetType === 'moon') : 
+            case (planetType === 'Moon') : 
              weight = mass * planetGravity[9];
             resultDiv.innerText = `${weight.toFixed(1)}N`;
             planetImg.src = './img/moon.png'
@@ -261,6 +214,8 @@ function calculateWeight(){
             weight = 'Something is Wrong somewhere'
             console.log('There must be a problem to get here');
             resultDiv.innerText = weight;
+        }
+
         }
     })
 }
